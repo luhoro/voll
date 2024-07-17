@@ -1,20 +1,12 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import Login from "./src/Login"
+import { NativeBaseProvider, StatusBar } from "native-base"
+import { TEMAS } from "./src/estilos/temas"
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Bonjour babe sir!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+    <NativeBaseProvider theme={TEMAS}>
+      <StatusBar backgroundColor={TEMAS.colors.blue[800]} />
+      <Login />
+    </NativeBaseProvider>
+  )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#f0f0f0',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
