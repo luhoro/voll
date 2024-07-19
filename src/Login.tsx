@@ -14,7 +14,7 @@ import Titulo from "./componentes/Titulo"
 import EntradaTexto from "./componentes/EntradaTexto"
 import Botao from "./componentes/Botao"
 
-export default function Login() {
+export const Login = () => {
   return (
     <VStack flex={1} alignItems={"center"} p={5} justifyContent={"center"}>
       <Image source={Logo} alt="Logo Voll" />
@@ -51,3 +51,5 @@ export default function Login() {
     </VStack>
   )
 }
+
+export default Login

@@ -1,13 +1,22 @@
-import { Button } from "native-base"
+import { Button, IButtonProps } from "native-base"
 import { ReactNode } from "react"
 
-interface BotaoProps {
+interface BotaoProps extends IButtonProps {
   children: ReactNode
+  autoSize?: boolean
+  color?: string
 }
 
-const Botao = ({ children, ...rest }: BotaoProps) => {
+const Botao = ({ children, autoSize = false, color, ...rest }: BotaoProps) => {
   return (
-    <Button w={"100%"} bg={"blue.800"} mt={10} borderRadius={"lg"} {...rest}>
+    <Button
+      w={autoSize ? "auto" : "100%"}
+      bg={color || "blue.800"}
+      mt={10}
+      borderRadius="lg"
+      _text={{ color: "white" }}
+      {...rest}
+    >
       {children}
     </Button>
   )
