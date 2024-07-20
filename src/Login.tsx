@@ -14,7 +14,7 @@ import Titulo from "./componentes/Titulo"
 import EntradaTexto from "./componentes/EntradaTexto"
 import Botao from "./componentes/Botao"
 
-export const Login = () => {
+export const Login = ({ navigation }) => {
   return (
     <VStack flex={1} alignItems={"center"} p={5} justifyContent={"center"}>
       <Image source={Logo} alt="Logo Voll" />
@@ -35,7 +35,8 @@ export const Login = () => {
         />
       </Box>
 
-      <Botao>Entrar</Botao>
+      <Botao onPress={()=> navigation.navigate('Tabs')
+      }>Entrar</Botao>
 
       <Link href="https://google.com" mt={2}>
         Esqueceu sua senha?
@@ -44,7 +45,7 @@ export const Login = () => {
       <Box w={"100%"} flexDirection={"row"} justifyContent={"center"} mt={10}>
         <Text>Ainda não tem conta? </Text>
 
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate("Cadastro")}>
           <Text color={"blue.500"}>Faça o seu cadastro!</Text>
         </TouchableOpacity>
       </Box>
