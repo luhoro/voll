@@ -12,7 +12,8 @@ const Titulo = ({children, ...rest}: TituloProps) => {
       fontWeight={"bold"}
       color={"gray.500"}
       textAlign={"center"}
-      mb={4}
+      mb={2}
+      mt={2}
       {...rest}
     >
       {children}
