@@ -2,6 +2,7 @@ import { Divider, ScrollView, Text, VStack } from "native-base"
 import CardConsulta from "../componentes/CardConsulta"
 import Titulo from "../componentes/Titulo"
 import Botao from "../componentes/Botao"
+import { CardsConsulta } from "../utils/mock"
 
 const Consultas = () => {
   return (
@@ -28,29 +29,17 @@ const Consultas = () => {
       <Titulo color={"blue.500"} fontSize={"lg"} alignSelf={"flex-start"}>
         Consultas passadas
       </Titulo>
-      <CardConsulta
-        nome="Dr. Aliane Regina"
-        especialidade="Dermatologista"
-        foto="https://img.freepik.com/free-psd/portrait-businesswoman_23-2150116729.jpg"
-        data="20/07/2024"
-        foiAtendido
-      />
 
-      <CardConsulta
-        nome="Dr. Miguel Amaral"
-        especialidade="Angiologista"
-        foto="https://t3.ftcdn.net/jpg/02/79/78/48/360_F_279784836_4eKMjfIfDtaICKmaSBAyft2Y43u5V76Q.jpg"
-        data="05/07/2024"
-        foiAtendido
-      />
-
-      <CardConsulta
-        nome="Dr. Ana Lópes"
-        especialidade="Tricologista"
-        foto="https://as2.ftcdn.net/v2/jpg/02/38/52/23/1000_F_238522302_inLLf4hzc83NVFlfQUoC1TAEbYEN1nVa.jpg"
-        data="13/06/2024"
-        foiAtendido
-      />
+      {CardsConsulta.map((card) => (
+        <CardConsulta
+          nome={card.nome}
+          especialidade={card.especialidade}
+          foto={card.foto}
+          data={card.data}
+          key={card.id}
+          foiAtendido
+        />
+      ))}
     </ScrollView>
   )
 }

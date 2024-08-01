@@ -3,7 +3,7 @@ import Logo from "../assets/logo.png"
 import Botao from "../componentes/Botao"
 import EntradaTexto from "../componentes/EntradaTexto"
 import Titulo from "../componentes/Titulo"
-import Depoimentos from "../utils/mock"
+import { Depoimentos } from "../utils/mock"
 
 const Principal = () => {
   return (
