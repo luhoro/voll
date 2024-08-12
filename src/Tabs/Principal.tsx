@@ -25,8 +25,8 @@ const Principal = () => {
           shadow={"1"}
           borderRightRadius={"md"}
         >
-          <EntradaTexto placeholder="Digite a especialidade" type="text" />
-          <EntradaTexto placeholder="Digite sua localização" type="text" />
+          <EntradaTexto placeholder="Digite a especialidade"/>
+          <EntradaTexto placeholder="Digite sua localização"/>
 
           <Botao mt={3} mb={3}>
             Buscar

@@ -23,8 +23,8 @@ const Explorar = () => {
           shadow={"1"}
           borderRightRadius={"md"}
         >
-          <EntradaTexto placeholder="Digite a especialidade" type="text" />
-          <EntradaTexto placeholder="Digite sua localização" type="text" />
+          <EntradaTexto placeholder="Digite a especialidade" />
+          <EntradaTexto placeholder="Digite sua localização" />
           <Botao mt={3} mb={2}>
             Buscar
           </Botao>

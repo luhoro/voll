@@ -1,30 +1,34 @@
 import { FormControl, Input, ITextProps } from "native-base"
 
-interface EntradaTextoProps extends ITextProps {
+interface InputProps {
   label?: string
   placeholder: string
-  type: "text" | "password"
+  secureTextEntry?: boolean
+  value?: string
+  onChangeText?: (text: string) => void
 }
 
 const EntradaTexto = ({
   label,
   placeholder,
-  type,
-  ...rest
-}: EntradaTextoProps) => {
+  secureTextEntry = false,
+  value,
+  onChangeText,
+}: InputProps): JSX.Element => {
   return (
     <FormControl mt={3}>
       {label && <FormControl.Label>{label}</FormControl.Label>}
 
       <Input
-        type={type}
         placeholder={placeholder}
-        size={"lg"}
-        w={"100%"}
-        borderRadius={"lg"}
-        backgroundColor={"gray.100"}
+        size="lg"
+        w="100%"
+        borderRadius="lg"
+        bgColor="gray.100"
+        secureTextEntry={secureTextEntry}
         shadow={3}
-        {...rest}
+        value={value}
+        onChangeText={onChangeText}
       />
     </FormControl>
   )

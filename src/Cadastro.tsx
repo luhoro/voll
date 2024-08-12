@@ -33,7 +33,6 @@ export const Cadastro = () => {
             key={item.id}
             label={item.label}
             placeholder={item.placeholder}
-            type={item.type as "text" | "password"}
           />
         ))}
 
