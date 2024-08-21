@@ -16,13 +16,13 @@ export const Login = ({ navigation }: any) => {
   const toast = useToast()
 
   useEffect(() => {
-    // AsyncStorage.removeItem('token')
+    AsyncStorage.removeItem('token')
 
     const verificarLogin = async () => {
       const token = await AsyncStorage.getItem("token")
-
-      if (token) navigation.replace("Tabs")
-
+      if (token) {
+        navigation.replace("Tabs")
+      }
       setCarregando(false)
     }
     verificarLogin()
@@ -30,27 +30,27 @@ export const Login = ({ navigation }: any) => {
 
   const login = async () => {
     const resultado = await fazerLogin(email, senha)
-
     if (resultado) {
       const { token } = resultado
       AsyncStorage.setItem("token", token)
 
       const tokenDecodificado = jwtDecode(token) as any
       const pacienteId = tokenDecodificado.id
-
-      AsyncStorage.setItem("pacienteId", pacienteId)
+      AsyncStorage.setItem("pacientId", pacienteId)
 
       navigation.replace("Tabs")
     } else {
       toast.show({
         title: "Erro no login",
-        description: "o email ou senha não conferem",
+        description: "O email ou senha não conferem",
         backgroundColor: "red.500",
       })
     }
   }
-
-  if (carregando) return null
+  
+  if(carregando){
+    return null
+  }
 
   return (
     <VStack flex={1} alignItems={"center"} p={5} justifyContent={"center"}>

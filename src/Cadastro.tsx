@@ -8,12 +8,13 @@ import Sessoes from "./utils/CadastroEntradaTexto"
 
 export const Cadastro = () => {
   const [numeroSessao, setNumeroSessao] = useState(0)
+  const [dados, setDados] = useState({} as any)
 
   const alternarSessao = (opcao: "avancar" | "voltar") => {
     if (opcao === "avancar") {
       numeroSessao < Sessoes.length - 1
         ? setNumeroSessao(numeroSessao + 1)
-        : null
+        : console.log(dados)
     }
 
     if (opcao === "voltar") {
@@ -21,9 +22,13 @@ export const Cadastro = () => {
     }
   }
 
+  const atualizarDados = (id: string, valor: string) => {
+    setDados({ ...dados, [id]: valor })
+  }
+
   return (
     <ScrollView flex={1} p={5}>
-      <Image source={Logo} alt="Logo Voll" alignSelf={"center"} />
+      <Image source={Logo} alt="Logo Voll" alignSelf={"center"} mt={10} />
 
       <Box mt={16}>
         <Titulo>{Sessoes[numeroSessao].titulo}</Titulo>
@@ -33,10 +38,13 @@ export const Cadastro = () => {
             key={item.id}
             label={item.label}
             placeholder={item.placeholder}
+            secureTextEntry={item.secureTextEntry}
+            value={dados[item.name]}
+            onChangeText={text => atualizarDados(item.name, text)}
           />
         ))}
 
-        {Sessoes[numeroSessao].checkbox && (
+        {Sessoes[numeroSessao]?.checkbox && (
           <Text color={"blue.800"} fontWeight={"bold"} fontSize={"md"} my={2}>
             Selecione o plano:
           </Text>
