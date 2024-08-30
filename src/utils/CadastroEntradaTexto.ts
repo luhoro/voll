@@ -1,4 +1,4 @@
-export const Sessoes = [
+export const secoes = [
   {
     id: 1,
     titulo: "Insira alguns dados básicos",
@@ -125,4 +125,4 @@ export const Sessoes = [
   },
 ]
 
-export default Sessoes
+export default secoes
