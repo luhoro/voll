@@ -4,8 +4,31 @@ import CardConsulta from "../componentes/CardConsulta"
 import EntradaTexto from "../componentes/EntradaTexto"
 import Titulo from "../componentes/Titulo"
 import { CardsConsulta } from "../utils/mock"
+import { useState } from "react"
+import { buscarEspecialistaPorEstado } from "../servicos/EspecialistaServico"
+
+interface Especialista {
+  nome: string
+  imagem: string
+  especialidade: string
+}
 
 const Explorar = () => {
+  const [estado, setEstado] = useState("")
+  const [especialidade, setEspecialidade] = useState("")
+  const [resultadoBusca, setResultadoBusca] = useState([])
+
+  const buscar = async () => {
+    if(!estado || !especialidade) return null
+
+    const resultado = await buscarEspecialistaPorEstado(estado, especialidade)
+
+    if(resultado) {
+      setResultadoBusca(resultado)
+      console.log(resultadoBusca)
+    }
+  }
+
   return (
     <ScrollView flex={1} bgColor={"white"}>
       <VStack
@@ -23,9 +46,15 @@ const Explorar = () => {
           shadow={"1"}
           borderRightRadius={"md"}
         >
-          <EntradaTexto placeholder="Digite a especialidade" />
-          <EntradaTexto placeholder="Digite sua localização" />
-          <Botao mt={3} mb={2}>
+          <EntradaTexto
+            placeholder="Digite a especialidade"
+            value={especialidade}
+            onChangeText={setEspecialidade}
+          />
+
+          <EntradaTexto placeholder="Digite sua localização" value={estado} onChangeText={setEstado}/>
+
+          <Botao mt={3} mb={2} onPress={buscar}>
             Buscar
           </Botao>
         </Box>
@@ -35,18 +64,12 @@ const Explorar = () => {
         </Titulo>
 
         <VStack flex={1} w={"100%"} alignItems={"flex-start"}>
-          <CardConsulta
-            nome="Dr. Rodrigo Matos"
-            especialidade="Cardiologista"
-            foto="https://www.advancy.com/wp-content/uploads/2017/06/portrait-defaut.jpg"
-          />
-
-          {CardsConsulta.map((card) => (
+          {resultadoBusca?.map((especialista: Especialista, index) => (
             <CardConsulta
-              nome={card.nome}
-              especialidade={card.especialidade}
-              foto={card.foto}
-              key={card.id}
+              nome={especialista.nome}
+              especialidade={especialista.especialidade}
+              foto={especialista.imagem}
+              key={index}
             />
           ))}
         </VStack>
